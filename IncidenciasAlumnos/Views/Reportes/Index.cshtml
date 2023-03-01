@@ -1,0 +1,61 @@
+﻿@model List<Reporte>
+
+<table align="center">
+    <tr>
+        <td>
+            <label> Alumnno</label>
+        </td>
+        <td>
+            <input type="text" id="NCta" name="NCta">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center" width="100%">
+            <button>Buscar</button>
+        </td>
+    </tr>
+</table>
+
+
+<table width="100%" align="center">
+    <tr>
+        <td>
+            <a asp-action="Create" asp-controller="Reportes">nuevo Reporte</a>
+        </td>
+    </tr>
+</table>
+
+<table width="100%" align="center">
+    <thead>
+        <tr>
+            <td>Alumno</td>
+            <td>Riesgo</td>
+            <td>Numero de Incidencias</td>
+            <td>Fecha Ultima Incidencia</td>
+            <td>
+                ver Detalle
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Alumno.Nombre</td>
+                <td>@item.Alumno.Riesgo.Code</td>
+                <td>@item.Alumno.Incidencias</td>
+                @if(@item.Alumno.LastIncidence!=null){
+                        <td>@item.Alumno.LastIncidence</td>
+                }else{
+                <td>No hay incidencias</td>
+                }
+                <td>
+                    <a class="btn-link" asp-action="Detalle" asp-controller="Reportes">Detalle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
